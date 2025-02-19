@@ -189,10 +189,21 @@ download() {
 
 # get server ip
 get_ip() {
-    export "$(_wget -4 -qO- https://one.one.one.one/cdn-cgi/trace | grep ip=)" &>/dev/null
-    [[ -z $ip ]] && export "$(_wget -6 -qO- https://one.one.one.one/cdn-cgi/trace | grep ip=)" &>/dev/null
+    # 尝试通过多个国内接口获取IP
+    ip_apis=(
+        "https://myip.ipip.net"  # IPIP提供的接口
+        "https://ip.3322.net"    # 3322提供的接口
+        "https://ident.me"       # ident.me提供的接口
+    )
+    
+    for api in "${ip_apis[@]}"; do
+        ip=$(_wget -qO- "$api" | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | head -n1)
+        if [[ ! -z "$ip" ]]; then
+            export ip
+            break
+        fi
+    done
 }
-
 # check background tasks status
 check_status() {
     # dependent pkg install fail
