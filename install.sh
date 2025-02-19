@@ -189,10 +189,10 @@ download() {
 
 # get server ip
 get_ip() {
-    ip=$(_wget -4 -qO- http://ipinfo.io/ip)
-    [[ -z $ip ]] && ip=$(_wget -6 -qO- http://ipinfo.io/ip)
-    export ip
+    ip=$(_wget -4 -qO- http://icanhazip.com)
+    [[ -z $ip ]] && ip=$(_wget -6 -qO- http://icanhazip.com)
 }
+
 
 # check background tasks status
 check_status() {
