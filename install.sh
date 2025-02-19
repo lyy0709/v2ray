@@ -1,7 +1,7 @@
 #!/bin/bash
 
 author=233boy
-# github=https://github.com/233boy/v2ray
+# github=https://ghproxy.lyy0709.cn/https://github.com/233boy/v2ray
 
 # bash fonts colors
 red='\e[31m'
@@ -161,20 +161,20 @@ install_pkg() {
 download() {
     case $1 in
     core)
-        link=https://github.com/${is_core_repo}/releases/latest/download/${is_core}-linux-${is_core_arch}.zip
-        [[ $is_core_ver ]] && link="https://github.com/${is_core_repo}/releases/download/${is_core_ver}/${is_core}-linux-${is_core_arch}.zip"
+        link=https://ghproxy.lyy0709.cn/https://github.com/${is_core_repo}/releases/latest/download/${is_core}-linux-${is_core_arch}.zip
+        [[ $is_core_ver ]] && link="https://ghproxy.lyy0709.cn/https://github.com/${is_core_repo}/releases/download/${is_core_ver}/${is_core}-linux-${is_core_arch}.zip"
         name=$is_core_name
         tmpfile=$tmpcore
         is_ok=$is_core_ok
         ;;
     sh)
-        link=https://github.com/${is_sh_repo}/releases/latest/download/code.zip
+        link=https://ghproxy.lyy0709.cn/https://github.com/${is_sh_repo}/releases/latest/download/code.zip
         name="$is_core_name 脚本"
         tmpfile=$tmpsh
         is_ok=$is_sh_ok
         ;;
     jq)
-        link=https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-$is_jq_arch
+        link=https://ghproxy.lyy0709.cn/https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-$is_jq_arch
         name="jq"
         tmpfile=$tmpjq
         is_ok=$is_jq_ok
@@ -239,7 +239,7 @@ pass_args() {
     while [[ $# -gt 0 ]]; do
         case $1 in
         online)
-            err "如果想要安装旧版本, 请转到: https://github.com/233boy/v2ray/tree/old"
+            err "如果想要安装旧版本, 请转到: https://ghproxy.lyy0709.cn/https://github.com/233boy/v2ray/tree/old"
             ;;
         -f | --core-file)
             [[ -z $2 ]] && {
@@ -291,7 +291,7 @@ exit_and_del_tmpdir() {
     [[ ! $1 ]] && {
         msg err "哦豁.."
         msg err "安装过程出现错误..."
-        echo -e "反馈问题) https://github.com/${is_sh_repo}/issues"
+        echo -e "反馈问题) https://ghproxy.lyy0709.cn/https://github.com/${is_sh_repo}/issues"
         echo
         exit 1
     }
