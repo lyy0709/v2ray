@@ -20,6 +20,7 @@ _yellow() { echo -e ${yellow}$@${none}; }
 _magenta() { echo -e ${magenta}$@${none}; }
 _red_bg() { echo -e "\e[41m$@${none}"; }
 
+
 is_err=$(_red_bg 错误!)
 is_warn=$(_red_bg 警告!)
 
