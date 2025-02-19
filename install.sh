@@ -1,7 +1,7 @@
 #!/bin/bash
 
-author=233boy
-# github=https://ghproxy.lyy0709.cn/https://github.com/233boy/v2ray
+author=lyy0709
+# github=https://ghproxy.lyy0709.cn/https://github.com/lyy0709/v2ray
 
 # bash fonts colors
 red='\e[31m'
@@ -240,7 +240,7 @@ pass_args() {
     while [[ $# -gt 0 ]]; do
         case $1 in
         online)
-            err "如果想要安装旧版本, 请转到: https://ghproxy.lyy0709.cn/https://github.com/233boy/v2ray/tree/old"
+            err "如果想要安装旧版本, 请转到: https://ghproxy.lyy0709.cn/https://github.com/lyy0709/v2ray/tree/old"
             ;;
         -f | --core-file)
             [[ -z $2 ]] && {
