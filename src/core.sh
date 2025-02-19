@@ -125,11 +125,24 @@ get_uuid() {
 
 get_ip() {
     [[ $ip || $is_no_auto_tls || $is_gen || $is_dont_get_ip ]] && return
-    export "$(_wget -4 -qO- http://icanhazip.com)"
-    [[ ! $ip ]] && export "$(_wget -6 -qO- http://icanhazip.com)"
-    [[ ! $ip ]] && {
-        err "获取服务器 IP 失败.."
-    }
+    
+    # 尝试自动获取IP
+    ip=$(_wget -4 -qO- http://icanhazip.com)
+    [[ ! $ip ]] && ip=$(_wget -6 -qO- http://icanhazip.com)
+    
+    # 如果自动获取失败，提示手动输入
+    if [[ ! $ip ]]; then
+        msg warn "自动获取服务器IP失败，请手动输入服务器IP地址"
+        read -p "请输入服务器IP地址: " input_ip
+        if [[ $input_ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ || $input_ip =~ ^([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4}$ ]]; then
+            ip=$input_ip
+            export ip
+        else
+            err "输入的IP地址格式不正确"
+        fi
+    else
+        export ip
+    fi
 }
 
 get_port() {
